@@ -81,7 +81,7 @@ export function Header() {
         className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,color] duration-300 ${
           solid
             ? "bg-cream/95 text-ink shadow-[0_1px_0_var(--color-line)] backdrop-blur-md"
-            : "bg-transparent text-cream"
+            : "bg-gradient-to-b from-ink/80 via-ink/45 to-transparent text-cream [text-shadow:0_1px_8px_rgb(0_0_0/0.45)]"
         }`}
       >
         <div className="container-x flex h-18 items-center justify-between gap-6 md:h-20">
@@ -90,13 +90,15 @@ export function Header() {
             className="flex items-center gap-3"
             onClick={() => setOpen(false)}
           >
-            <LogoMark className="h-10 w-8 text-gold" />
+            <LogoMark
+              className={`h-10 w-8 ${solid ? "text-brick" : "text-gold drop-shadow-[0_1px_6px_rgb(0_0_0/0.6)]"}`}
+            />
             <span className="leading-none">
               <span className="block font-display text-2xl font-semibold tracking-tight">
                 {site.name}
               </span>
               <span
-                className={`mt-1 block text-[0.6rem] uppercase tracking-[0.28em] ${solid ? "text-muted" : "text-cream/75"}`}
+                className={`mt-1 block text-[0.6rem] uppercase tracking-[0.28em] ${solid ? "text-muted" : "text-cream/90"}`}
               >
                 {site.tagline} · {site.city}
               </span>

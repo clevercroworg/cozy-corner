@@ -4,6 +4,7 @@ export const site = {
   tagline: "Event Venue",
   city: "Bangalore",
   rating: "5.0",
+  capacity: 300,
   // TODO: replace phone, WhatsApp, email and address with the real details
   phone: "+91 98765 43210",
   whatsapp: "919876543210",
@@ -26,10 +27,11 @@ export type SlotId = (typeof slots)[number]["id"];
 
 export const eventTypes = [
   "Birthday",
-  "Baby shower / Seemantham",
-  "Naming ceremony",
   "Engagement",
   "Anniversary",
-  "Get-together",
+  "Baby shower / Seemantham",
+  "Naming ceremony",
+  "Family gathering",
+  "Private celebration",
   "Other",
 ];

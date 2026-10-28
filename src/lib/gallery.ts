@@ -6,6 +6,7 @@ import diningHall from "@/assets/gallery/dining-hall.jpg";
 import diningHallWide from "@/assets/gallery/dining-hall-wide.jpg";
 import eveningAnniversary from "@/assets/gallery/evening-anniversary.jpg";
 import fairytaleBirthday from "@/assets/gallery/fairytale-birthday.jpg";
+import floralArchCeiling from "@/assets/gallery/floral-arch-ceiling.jpg";
 import floralArchHall from "@/assets/gallery/floral-arch-hall.jpg";
 import floralArchWide from "@/assets/gallery/floral-arch-wide.jpg";
 import leafStage from "@/assets/gallery/leaf-stage.jpg";
@@ -46,6 +47,16 @@ export const photos = {
     alt: "Engagement stage with marigold strings",
   },
   leaf: { src: leafStage, alt: "Naming ceremony stage with leaf backdrop" },
+  whiteArch: {
+    src: whiteArchThrone,
+    alt: "Jasmine arches with a white throne",
+  },
+  hallFloral: {
+    src: floralArchCeiling,
+    alt: "The hall under its timber ceiling and ring chandelier",
+  },
+  mirror: { src: mirrorStage, alt: "Floral stage with gold mirror frame" },
+  pinkBow: { src: pinkBowBirthday, alt: "Pink bow celebration backdrop" },
   hallArches: {
     src: floralArchWide,
     alt: "The hall with arched windows and timber ceiling",

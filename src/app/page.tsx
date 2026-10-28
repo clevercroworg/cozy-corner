@@ -8,32 +8,42 @@ import {
   SectionTitle,
   Toran,
 } from "@/components/ornaments";
+import { amenities } from "@/lib/amenities";
 import { gallery, photos } from "@/lib/gallery";
 import { site } from "@/lib/site";
 
 const occasions = [
   { title: "Birthdays", photo: photos.butterfly },
-  { title: "Baby Showers", photo: photos.floral },
-  { title: "Naming Ceremonies", photo: photos.leaf },
   { title: "Engagements", photo: photos.mandapSide },
+  { title: "Anniversaries", photo: photos.evening },
+  { title: "Baby Showers", photo: photos.whiteArch },
+  { title: "Family Gatherings", photo: photos.mirror },
+  { title: "Private Celebrations", photo: photos.pinkBow },
+];
+
+const stats: { value: string; label: string; star?: boolean }[] = [
+  { value: String(site.capacity), label: "Guest capacity" },
+  { value: "2", label: "Floors with lift" },
+  { value: "90", label: "Cushioned chairs" },
+  { value: site.rating, label: "Google rating", star: true },
 ];
 
 const features = [
   {
-    title: "Brick & timber interiors",
-    icon: "M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6",
-  },
-  {
-    title: "Chandelier-lit hall",
+    title: "Rooftop party hall · 2nd floor",
     icon: "M12 3v4M5 11h14l-2 5H7l-2-5zM9 16v3M15 16v3M12 7a4 4 0 0 1 4 4H8a4 4 0 0 1 4-4z",
   },
   {
-    title: "Separate dining hall",
+    title: "Dining area · 1st floor",
     icon: "M7 3v8a2 2 0 0 0 2 2v8M11 3v8M7 7h4M17 3c-1.5 2-2 4-2 7h2v11",
   },
   {
-    title: "Natural daylight",
-    icon: "M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z",
+    title: "Welcome drink & snack area",
+    icon: "M6 3h12l-1.5 7a4.5 4.5 0 0 1-9 0zM12 14.5V21M8 21h8",
+  },
+  {
+    title: "Common area with washrooms",
+    icon: "M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6",
   },
 ];
 
@@ -41,7 +51,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate flex min-h-[min(100dvh,60rem)] items-end overflow-hidden">
+      <section className="relative isolate flex min-h-[34rem] items-end overflow-hidden md:min-h-[38rem]">
         <Image
           src={photos.hero.src}
           alt={photos.hero.alt}
@@ -72,15 +82,15 @@ export default function Home() {
           corner="br"
           className="absolute bottom-3 right-3 size-14 text-gold md:bottom-6 md:right-6 md:size-24"
         />
-        <div className="container-x pb-20 pt-44 text-cream md:pb-28">
+        <div className="container-x pb-24 pt-36 text-cream md:pb-28 md:pt-40">
           <p className="eyebrow !text-cream/90">
             {site.tagline} · {site.city}
           </p>
-          <h1 className="mt-4 font-display text-6xl font-semibold leading-[0.95] tracking-tight sm:text-7xl md:text-8xl">
+          <h1 className="mt-3 font-display text-6xl font-semibold leading-[0.95] tracking-tight md:text-7xl">
             {site.name}
           </h1>
-          <Divider className="mt-6 text-gold" />
-          <div className="mt-10 flex flex-wrap gap-3">
+          <Divider className="mt-5 text-gold" />
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/availability" className="btn btn-primary">
               Check availability
             </Link>
@@ -91,18 +101,47 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Key numbers */}
+      <section className="container-x relative z-10 -mt-12">
+        <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line shadow-[0_20px_50px_-20px_rgb(42_28_21/0.35)] md:grid-cols-4">
+          {stats.map((st) => (
+            <div
+              key={st.label}
+              className="flex flex-col-reverse bg-white px-5 py-6 text-center md:py-7"
+            >
+              <dt className="mt-1 text-[0.65rem] uppercase tracking-[0.12em] text-muted sm:text-xs sm:tracking-[0.18em]">
+                {st.label}
+              </dt>
+              <dd className="flex items-center justify-center gap-1.5 font-display text-4xl font-semibold text-brick md:text-5xl">
+                {st.value}
+                {st.star && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden
+                    className="size-6 text-gold md:size-7"
+                  >
+                    <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" />
+                  </svg>
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
       {/* The hall */}
       <section className="relative overflow-hidden">
         <Mandala className="absolute -right-32 top-10 hidden size-[28rem] text-gold/15 md:block" />
-        <div className="container-x relative grid items-center gap-14 py-24 md:grid-cols-2 md:gap-16 md:py-32">
+        <div className="container-x relative grid items-center gap-14 pb-24 pt-20 md:grid-cols-2 md:gap-16 md:pb-32 md:pt-28">
           <div className="relative mx-auto w-full max-w-md md:max-w-none">
             <div
               aria-hidden
               className="absolute -left-3 -top-3 bottom-3 right-3 rounded-t-full rounded-b-3xl border border-gold md:-left-5 md:-top-5 md:bottom-5 md:right-5"
             />
             <Image
-              src={photos.evening.src}
-              alt={photos.evening.alt}
+              src={photos.hallFloral.src}
+              alt={photos.hallFloral.alt}
               placeholder="blur"
               sizes="(min-width: 768px) 50vw, 100vw"
               className="relative aspect-[4/5] w-full rounded-t-full rounded-b-3xl object-cover"
@@ -124,11 +163,13 @@ export default function Home() {
               A warm space for the moments that matter
             </h2>
             <p className="mt-6 max-w-md leading-relaxed text-muted">
-              Exposed brick, a timber-beamed ceiling and a grand ring chandelier
-              make Cozy Corner feel like home, with room to celebrate with
-              everyone you love.
+              Exposed brick, a timber-beamed ceiling and a grand ring
+              chandelier, across two floors with lift access. Perfect for
+              birthdays, engagements, anniversaries, baby showers, family
+              gatherings and private celebrations of up to {site.capacity}{" "}
+              guests.
             </p>
-            <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-6">
+            <ul className="mt-10 grid gap-x-6 gap-y-5 sm:grid-cols-2">
               {features.map((f) => (
                 <li key={f.title} className="flex items-center gap-3">
                   <span className="grid size-11 shrink-0 place-items-center rounded-full bg-sand text-brick">
@@ -154,7 +195,7 @@ export default function Home() {
       </section>
 
       {/* Occasions */}
-      <section className="relative bg-sand py-24 md:py-32">
+      <section className="relative z-10 bg-sand py-24 md:py-32">
         <div className="scallop-top" />
         <div className="absolute inset-0 overflow-hidden">
           <CornerFlourish
@@ -168,18 +209,18 @@ export default function Home() {
         </div>
         <div className="container-x relative">
           <SectionTitle>Celebrations we host</SectionTitle>
-          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
+          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5">
             {occasions.map((o) => (
               <div
                 key={o.title}
-                className="group relative aspect-[3/4] overflow-hidden rounded-2xl"
+                className="group relative aspect-[3/4] overflow-hidden rounded-2xl md:aspect-[4/3]"
               >
                 <Image
                   src={o.photo.src}
                   alt={o.photo.alt}
                   fill
                   placeholder="blur"
-                  sizes="(min-width: 768px) 25vw, 50vw"
+                  sizes="(min-width: 768px) 33vw, 50vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/0 to-transparent" />
@@ -197,6 +238,70 @@ export default function Home() {
         <div className="scallop-bottom" />
       </section>
 
+      {/* Amenities */}
+      <section className="relative isolate overflow-hidden bg-wine py-24 text-cream md:py-32">
+        <Mandala className="absolute -left-40 -top-40 -z-10 size-[30rem] text-gold/15" />
+        <Mandala className="absolute -bottom-40 -right-40 -z-10 size-[30rem] text-gold/15" />
+        <CornerFlourish
+          corner="bl"
+          className="absolute bottom-8 left-4 size-16 text-gold/80 md:left-8 md:size-24"
+        />
+        <CornerFlourish
+          corner="br"
+          className="absolute bottom-8 right-4 size-16 text-gold/80 md:right-8 md:size-24"
+        />
+        <div className="container-x">
+          <div className="text-center">
+            <p className="eyebrow !text-gold">Included with every booking</p>
+            <h2 className="mt-3 font-display text-4xl font-semibold md:text-5xl">
+              Amenities &amp; Facilities
+            </h2>
+            <Divider className="mx-auto mt-5 text-gold" />
+          </div>
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {amenities.map((a) => (
+              <div
+                key={a.title}
+                className="rounded-2xl border border-gold/25 bg-cream/[0.04] p-6 transition-colors hover:border-gold/50 md:p-7"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="grid size-14 shrink-0 place-items-center rounded-full border border-gold/50 text-gold">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
+                    >
+                      <path d={a.icon} />
+                    </svg>
+                  </span>
+                  <h3 className="font-display text-2xl font-semibold">
+                    {a.title}
+                  </h3>
+                </div>
+                <ul className="mt-5 space-y-2.5 text-sm text-cream/80">
+                  {a.items.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span
+                        aria-hidden
+                        className="mt-[0.45rem] size-1.5 shrink-0 rotate-45 bg-gold"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="scallop-up" />
+      </section>
+
       {/* Video */}
       <section className="relative overflow-hidden">
         <Mandala className="absolute -bottom-40 -left-40 size-[30rem] text-gold/15" />
@@ -209,7 +314,7 @@ export default function Home() {
             <h2 className="mt-3 font-display text-4xl font-semibold md:text-5xl">
               Step inside
             </h2>
-            <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-line pt-8">
+            <dl className="mt-10 grid max-w-sm grid-cols-2 gap-4 border-t border-line pt-8">
               <div>
                 <dt className="text-xs uppercase tracking-[0.18em] text-muted">
                   Morning
@@ -224,24 +329,6 @@ export default function Home() {
                 </dt>
                 <dd className="mt-2 whitespace-nowrap font-display text-lg font-semibold sm:text-2xl">
                   4 PM – 11 PM
-                </dd>
-              </div>
-              <div>
-                <dt className="text-xs uppercase tracking-[0.18em] text-muted">
-                  Google
-                </dt>
-                <dd className="mt-2 flex items-center gap-1.5 font-display text-lg font-semibold sm:text-2xl">
-                  {site.rating}
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    className="text-gold"
-                    fill="currentColor"
-                    aria-label="stars"
-                  >
-                    <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" />
-                  </svg>
                 </dd>
               </div>
             </dl>

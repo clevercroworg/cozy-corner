@@ -254,7 +254,7 @@ export function BookingForm() {
               name="guests"
               type="number"
               min={1}
-              max={2000}
+              max={300}
               placeholder="e.g. 150"
               className="field"
             />
