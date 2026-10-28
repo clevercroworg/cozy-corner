@@ -10,7 +10,7 @@ import {
 } from "@/components/ornaments";
 import { amenities } from "@/lib/amenities";
 import { gallery, photos } from "@/lib/gallery";
-import { site } from "@/lib/site";
+import { formatPrice, pricing, site } from "@/lib/site";
 
 const occasions = [
   { title: "Birthdays", photo: photos.butterfly },
@@ -307,6 +307,71 @@ export default function Home() {
           </div>
         </div>
         <div className="scallop-up" />
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="relative scroll-mt-16 overflow-hidden">
+        <Mandala className="absolute -right-40 top-10 size-[28rem] text-gold/15" />
+        <div className="container-x relative py-24 md:py-32">
+          <SectionTitle>Pricing</SectionTitle>
+          <div className="mt-14 grid gap-5 md:grid-cols-3 md:gap-6">
+            {pricing.map((tier, i) => {
+              const featured = i === 1;
+              return (
+                <div
+                  key={tier.guests}
+                  className={`relative flex flex-col rounded-3xl p-7 text-center md:p-8 ${
+                    featured
+                      ? "bg-forest text-cream shadow-xl md:-my-4 md:py-12"
+                      : "border border-line bg-white"
+                  }`}
+                >
+                  <span
+                    className={`mx-auto grid size-14 place-items-center rounded-full ${
+                      featured
+                        ? "border border-gold/50 text-gold"
+                        : "bg-sand text-brick"
+                    }`}
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
+                    >
+                      <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1M16 3.5a4 4 0 0 1 0 7M22 21v-1a6 6 0 0 0-4-5.6" />
+                    </svg>
+                  </span>
+                  <p className={`eyebrow mt-5 ${featured ? "!text-gold" : ""}`}>
+                    {tier.guests}
+                  </p>
+                  <p className="mt-3 font-display text-5xl font-semibold md:text-6xl">
+                    {formatPrice(tier.price)}
+                  </p>
+                  <Divider className="mx-auto mt-5 text-gold" />
+                  <ul
+                    className={`mt-6 space-y-2.5 text-sm ${featured ? "text-cream/80" : "text-muted"}`}
+                  >
+                    <li>All amenities &amp; facilities included</li>
+                    <li>Rooftop party hall + dining area</li>
+                    <li>Red carpet entry &amp; sound setup</li>
+                  </ul>
+                  <Link
+                    href="/book"
+                    className={`btn mt-8 ${featured ? "bg-cream text-forest hover:bg-white" : "btn-primary"}`}
+                  >
+                    Book now
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
       {/* Video */}

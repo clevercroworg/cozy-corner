@@ -20,6 +20,15 @@ export const site = {
   hours: "8 AM – 3 PM · 4 PM – 11 PM",
 };
 
+// Venue price by number of guests (₹).
+export const pricing = [
+  { guests: "Up to 50 guests", price: 20000 },
+  { guests: "50 – 100 guests", price: 25000 },
+  { guests: "100 – 150 guests", price: 32000 },
+];
+
+export const formatPrice = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+
 export const slots = [
   { id: "morning", label: "Morning", time: "8 AM – 3 PM" },
   { id: "evening", label: "Evening", time: "4 PM – 11 PM" },

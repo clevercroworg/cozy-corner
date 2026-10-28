@@ -11,11 +11,12 @@ import { site } from "@/lib/site";
 const links = [
   { href: "/", label: "Home" },
   { href: "/#amenities", label: "Amenities" },
+  { href: "/#pricing", label: "Pricing" },
   { href: "/#gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
 
-const sectionIds = ["amenities", "gallery"];
+const sectionIds = ["amenities", "pricing", "gallery"];
 
 const tel = `tel:${site.phone.replace(/\s/g, "")}`;
 

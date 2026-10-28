@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { WhatsAppIcon, whatsappHref } from "@/components/contact-bar";
-import { eventTypes, site, slots, type SlotId } from "@/lib/site";
+import {
+  eventTypes,
+  formatPrice,
+  pricing,
+  site,
+  slots,
+  type SlotId,
+} from "@/lib/site";
 
 type Status =
   { state: "idle" | "sending" | "sent" } | { state: "error"; message: string };
@@ -203,6 +210,25 @@ export function BookingForm() {
               Call {site.phone}
             </a>
           </div>
+        </div>
+        <div className="rounded-3xl border border-line bg-white p-6 sm:p-7">
+          <p className="eyebrow">Pricing</p>
+          <ul className="mt-4 divide-y divide-line">
+            {pricing.map((tier) => (
+              <li
+                key={tier.guests}
+                className="flex items-baseline justify-between gap-4 py-3"
+              >
+                <span className="text-sm text-muted">{tier.guests}</span>
+                <span className="font-display text-2xl font-semibold">
+                  {formatPrice(tier.price)}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs text-muted">
+            All amenities &amp; facilities included.
+          </p>
         </div>
         <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-line bg-line text-center">
           {slots.map((s) => (
