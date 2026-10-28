@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/ornaments";
 import { photos } from "@/lib/gallery";
+import { WhatsAppIcon, whatsappHref } from "@/components/contact-bar";
 import { ContactForm } from "@/components/contact-form";
 import { site } from "@/lib/site";
 
@@ -9,7 +10,6 @@ export const metadata: Metadata = { title: "Contact" };
 const icons = {
   phone:
     "M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2",
-  chat: "M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z",
   mail: "M4 6h16v12H4zM4 7l8 6 8-6",
   pin: "M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11zM12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
 };
@@ -25,8 +25,8 @@ export default function ContactPage() {
     {
       label: "WhatsApp",
       value: "Chat with us",
-      href: `https://wa.me/${site.whatsapp}`,
-      icon: icons.chat,
+      href: whatsappHref,
+      icon: "whatsapp",
     },
     {
       label: "Email",
@@ -60,20 +60,26 @@ export default function ContactPage() {
                 rel="noreferrer"
                 className="flex items-center gap-4 rounded-2xl border border-line bg-white p-5 transition-colors hover:border-brick/40"
               >
-                <span className="grid size-12 shrink-0 place-items-center rounded-full bg-sand text-brick">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d={d.icon} />
-                  </svg>
-                </span>
+                {d.icon === "whatsapp" ? (
+                  <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#25D366] text-white">
+                    <WhatsAppIcon className="size-6" />
+                  </span>
+                ) : (
+                  <span className="grid size-12 shrink-0 place-items-center rounded-full bg-sand text-brick">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d={d.icon} />
+                    </svg>
+                  </span>
+                )}
                 <span className="min-w-0">
                   <span className="block text-xs uppercase tracking-[0.18em] text-muted">
                     {d.label}

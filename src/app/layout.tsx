@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { Header } from "@/components/header";
+import { ContactBar } from "@/components/contact-bar";
 import { Footer } from "@/components/footer";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -30,10 +31,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${display.variable} ${body.variable} antialiased`}
     >
-      <body className="flex min-h-dvh flex-col font-sans">
+      <body className="flex min-h-dvh flex-col pb-[4.5rem] font-sans md:pb-0">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ContactBar />
       </body>
     </html>
   );
