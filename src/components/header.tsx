@@ -1,17 +1,21 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { LogoMark, Mandala } from "@/components/ornaments";
+import logoMark from "@/assets/brand/logo-mark.png";
+import { Mandala } from "@/components/ornaments";
 import { site } from "@/lib/site";
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/#amenities", label: "Amenities" },
   { href: "/#gallery", label: "Gallery" },
-  { href: "/availability", label: "Availability" },
   { href: "/contact", label: "Contact" },
 ];
+
+const sectionIds = ["amenities", "gallery"];
 
 const tel = `tel:${site.phone.replace(/\s/g, "")}`;
 
@@ -27,33 +31,38 @@ const useScrolled = () =>
     () => false,
   );
 
-/** True while the home page's gallery section is on screen. */
-function useGalleryInView(enabled: boolean) {
-  const [inView, setInView] = useState(false);
+/** The home-page section currently in the middle of the screen, if any. */
+function useActiveSection(enabled: boolean) {
+  const [active, setActive] = useState<string | null>(null);
   useEffect(() => {
-    const el = enabled ? document.getElementById("gallery") : null;
-    if (!el) return;
+    if (!enabled) return;
+    const els = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
     const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      {
-        rootMargin: "-45% 0px -45% 0px",
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+          else setActive((cur) => (cur === entry.target.id ? null : cur));
+        }
       },
+      { rootMargin: "-45% 0px -45% 0px" },
     );
-    observer.observe(el);
+    els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [enabled]);
-  return enabled && inView;
+  return enabled ? active : null;
 }
 
 export function Header() {
   const pathname = usePathname();
   const scrolled = useScrolled();
-  const galleryInView = useGalleryInView(pathname === "/");
+  const section = useActiveSection(pathname === "/");
   const [open, setOpen] = useState(false);
 
   const isActive = (href: string) => {
-    if (href === "/#gallery") return galleryInView;
-    if (href === "/") return pathname === "/" && !galleryInView;
+    if (href.startsWith("/#")) return section === href.slice(2);
+    if (href === "/") return pathname === "/" && section === null;
     return pathname === href;
   };
 
@@ -90,17 +99,25 @@ export function Header() {
             className="flex items-center gap-3"
             onClick={() => setOpen(false)}
           >
-            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-cream shadow-md ring-2 ring-gold/70">
-              <LogoMark className="h-7 w-6 text-brick" />
+            <span className="grid h-12 w-[4.5rem] shrink-0 place-items-center rounded-xl bg-cream px-1.5 shadow-md ring-1 ring-gold/50 md:h-14 md:w-20">
+              <Image
+                src={logoMark}
+                alt=""
+                sizes="80px"
+                preload
+                className="h-auto w-full"
+              />
             </span>
             <span className="leading-none">
-              <span className="block font-display text-[1.7rem] font-bold tracking-tight">
+              <span className="block font-display text-[1.35rem] font-medium uppercase tracking-[0.08em] md:text-2xl">
                 {site.name}
               </span>
               <span
-                className={`mt-1 block text-[0.6rem] uppercase tracking-[0.28em] ${solid ? "text-muted" : "text-cream/85"}`}
+                className={`mt-1.5 flex items-center gap-2 font-label text-[0.6rem] uppercase tracking-[0.3em] ${solid ? "text-muted" : "text-cream/85"}`}
               >
-                {site.tagline} · {site.city}
+                <span aria-hidden className="h-px w-4 bg-current opacity-60" />
+                {site.tagline}
+                <span aria-hidden className="h-px w-4 bg-current opacity-60" />
               </span>
             </span>
           </Link>
@@ -149,7 +166,7 @@ export function Header() {
             >
               <PhoneIcon />
             </a>
-            <Link href="/availability" className="btn btn-primary !px-5 !py-3">
+            <Link href="/book" className="btn btn-primary !px-5 !py-3">
               Book now
             </Link>
           </div>
@@ -213,7 +230,7 @@ export function Header() {
 
           <div className="mt-auto space-y-3 pt-10">
             <Link
-              href="/availability"
+              href="/book"
               onClick={() => setOpen(false)}
               className="btn btn-primary w-full"
             >

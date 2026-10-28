@@ -4,14 +4,16 @@
   --color-cream: #fbf6ef;
   --color-sand: #f3e9dc;
   --color-line: #e6d8c6;
-  --color-ink: #2a1c15;
-  --color-muted: #7a6558;
+  --color-ink: #1d2a21;
+  --color-muted: #6d675a;
   --color-brick: #a3452a;
   --color-brick-dark: #86361f;
   --color-gold: #c39a4b;
-  --color-wine: #4a1a20;
+  --color-forest: #22332a;
+  --color-sage: #6f7d58;
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-display: var(--font-garamond), Georgia, serif;
+  --font-label: var(--font-jost), ui-sans-serif, sans-serif;
 }
 
 html {
@@ -43,7 +45,8 @@ body {
 
 .eyebrow {
   font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  font-family: var(--font-label);
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-brick);
   font-weight: 600;

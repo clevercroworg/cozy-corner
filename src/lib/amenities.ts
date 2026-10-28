@@ -24,7 +24,7 @@ export const amenities = [
     title: "Seating & Dining",
     icon: "M7 3h10v8H7zM6 11h12v3H6zM7 14v7M17 14v7",
     items: [
-      "90 chairs with golden cushions",
+      "100 chairs with golden cushions",
       "Round or long tables with cloth",
       "Dining for 50 guests at a time",
     ],

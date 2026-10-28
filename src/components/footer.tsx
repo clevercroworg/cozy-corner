@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { LogoMark, Toran } from "@/components/ornaments";
+import Image from "next/image";
+import logo from "@/assets/brand/logo.png";
+import { Toran } from "@/components/ornaments";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -7,16 +9,18 @@ export function Footer() {
     <footer className="relative bg-ink text-cream/80">
       <Toran id="footer-toran" className="opacity-90" />
       <div className="container-x grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
-        <div className="flex items-start gap-4">
-          <LogoMark className="h-14 w-11 shrink-0 text-gold" />
-          <div>
-            <p className="font-display text-3xl font-semibold text-cream">
-              {site.name}
-            </p>
-            <p className="mt-1 text-xs uppercase tracking-[0.22em] text-gold">
-              {site.tagline} · {site.city}
-            </p>
-          </div>
+        <div>
+          <Link
+            href="/"
+            className="inline-block rounded-2xl bg-cream px-6 py-5 shadow-lg ring-1 ring-gold/40"
+          >
+            <Image
+              src={logo}
+              alt={`${site.name} ${site.tagline}`}
+              sizes="224px"
+              className="h-auto w-48 md:w-56"
+            />
+          </Link>
         </div>
 
         <div className="space-y-2 text-sm">
@@ -50,8 +54,8 @@ export function Footer() {
             </a>
           </p>
           <p className="flex gap-4 pt-2">
-            <Link href="/availability" className="hover:text-cream">
-              Availability
+            <Link href="/book" className="hover:text-cream">
+              Book now
             </Link>
             <Link href="/contact" className="hover:text-cream">
               Contact

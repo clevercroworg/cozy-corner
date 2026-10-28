@@ -237,22 +237,3 @@ export function PageHeader({
     </section>
   );
 }
-
-/** Arched-window mark, echoing the hall's windows. */
-export function LogoMark({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 32 40"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      aria-hidden
-      className={className}
-    >
-      <path d="M2 39V16a14 14 0 0 1 28 0v23z" />
-      <path d="M7 39V17a9 9 0 0 1 18 0v22" />
-      <path d="M16 14l3 4-3 4-3-4z" fill="currentColor" stroke="none" />
-      <path d="M7 30h18M16 22v17" strokeWidth="1" />
-    </svg>
-  );
-}

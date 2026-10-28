@@ -1,6 +1,6 @@
 # Cozy Corner — Event Venue, Bangalore
 
-Next.js site with three pages: Home (with gallery), Availability (booking request) and Contact.
+Next.js site with three pages: Home (with gallery), Book (booking request form) and Contact.
 
 ## Run locally
 

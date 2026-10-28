@@ -22,9 +22,9 @@ const occasions = [
 ];
 
 const stats: { value: string; label: string; star?: boolean }[] = [
-  { value: String(site.capacity), label: "Guest capacity" },
+  { value: String(site.capacity), label: "Floating capacity" },
   { value: "2", label: "Floors with lift" },
-  { value: "90", label: "Cushioned chairs" },
+  { value: String(site.chairs), label: "Cushioned chairs" },
   { value: site.rating, label: "Google rating", star: true },
 ];
 
@@ -83,16 +83,18 @@ export default function Home() {
           className="absolute bottom-3 right-3 size-14 text-gold md:bottom-6 md:right-6 md:size-24"
         />
         <div className="container-x pb-24 pt-36 text-cream md:pb-28 md:pt-40">
-          <p className="eyebrow !text-cream/90">
-            {site.tagline} · {site.city}
-          </p>
-          <h1 className="mt-3 font-display text-6xl font-semibold leading-[0.95] tracking-tight md:text-7xl">
+          <p className="eyebrow !text-cream/90">{site.city}</p>
+          <h1 className="mt-3 font-display text-5xl font-medium uppercase leading-none tracking-[0.06em] sm:text-6xl md:text-7xl">
             {site.name}
           </h1>
-          <Divider className="mt-5 text-gold" />
+          <p className="mt-4 flex items-center gap-3 font-label text-sm uppercase tracking-[0.35em] text-gold">
+            <span aria-hidden className="h-px w-10 bg-current" />
+            {site.tagline}
+            <span aria-hidden className="h-px w-10 bg-current" />
+          </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/availability" className="btn btn-primary">
-              Check availability
+            <Link href="/book" className="btn btn-primary">
+              Book the venue
             </Link>
             <Link href="#gallery" className="btn btn-ghost text-cream">
               View gallery
@@ -239,7 +241,10 @@ export default function Home() {
       </section>
 
       {/* Amenities */}
-      <section className="relative isolate overflow-hidden bg-wine py-24 text-cream md:py-32">
+      <section
+        id="amenities"
+        className="relative isolate scroll-mt-16 overflow-hidden bg-forest py-24 text-cream md:py-32"
+      >
         <Mandala className="absolute -left-40 -top-40 -z-10 size-[30rem] text-gold/15" />
         <Mandala className="absolute -bottom-40 -right-40 -z-10 size-[30rem] text-gold/15" />
         <CornerFlourish
@@ -332,7 +337,7 @@ export default function Home() {
                 </dd>
               </div>
             </dl>
-            <Link href="/availability" className="btn btn-primary mt-10">
+            <Link href="/book" className="btn btn-primary mt-10">
               Book your date
             </Link>
           </div>
@@ -400,10 +405,10 @@ export default function Home() {
             <Divider className="mx-auto mt-6 text-gold" />
             <div className="mt-10 flex flex-wrap justify-center gap-3">
               <Link
-                href="/availability"
+                href="/book"
                 className="btn bg-cream text-brick hover:bg-white"
               >
-                Check availability
+                Book the venue
               </Link>
               <Link href="/contact" className="btn btn-ghost text-cream">
                 Contact us
