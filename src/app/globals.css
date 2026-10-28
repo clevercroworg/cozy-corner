@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-cream: #fbf6ef;
+  --color-sand: #f3e9dc;
+  --color-line: #e6d8c6;
+  --color-ink: #2a1c15;
+  --color-muted: #7a6558;
+  --color-brick: #a3452a;
+  --color-brick-dark: #86361f;
+  --color-gold: #c39a4b;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-brick);
+  color: var(--color-cream);
+}
+
+.container-x {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-x {
+    padding-inline: 2rem;
+  }
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-brick);
+  font-weight: 600;
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+  background: white;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.field:focus {
+  border-color: var(--color-brick);
+  box-shadow: 0 0 0 3px rgb(163 69 42 / 0.12);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.85rem 1.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+.btn-primary {
+  background: var(--color-brick);
+  color: var(--color-cream);
+}
+
+.btn-primary:hover {
+  background: var(--color-brick-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  border: 1px solid currentColor;
+}
+
+.btn-ghost:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+/* Scalloped edges for sand-coloured bands */
+.scallop-top,
+.scallop-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14px;
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-size: 28px 14px;
+}
+
+.scallop-top {
+  top: -13px;
+  background-image: radial-gradient(
+    circle at 14px 14px,
+    var(--color-sand) 13.5px,
+    transparent 14px
+  );
+}
+
+.scallop-bottom {
+  bottom: -13px;
+  background-image: radial-gradient(
+    circle at 14px 0,
+    var(--color-sand) 13.5px,
+    transparent 14px
+  );
+}
+
+/* Cream scallops along the bottom edge of a photo band */
+.scallop-up {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 14px;
+  pointer-events: none;
+  background: radial-gradient(
+      circle at 14px 14px,
+      var(--color-cream) 13.5px,
+      transparent 14px
+    )
+    0 0 / 28px 14px repeat-x;
+}
+
+/* Brick wall texture, a nod to the hall's walls */
+.brick-wall {
+  background-color: var(--color-brick);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32'%3E%3Cpath d='M0 .5H64M0 16.5H64M32 0V16M.5 16V32' stroke='%23000' stroke-opacity='.16' fill='none'/%3E%3C/svg%3E");
+}
