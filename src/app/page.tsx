@@ -134,10 +134,74 @@ export default function Home() {
         </dl>
       </section>
 
+      {/* The hall */}
+      <section className="relative overflow-hidden">
+        <Mandala className="absolute -right-32 top-10 hidden size-[28rem] text-gold/15 md:block" />
+        <div className="container-x relative grid items-center gap-14 pb-24 pt-20 md:grid-cols-2 md:gap-16 md:pb-32 md:pt-28">
+          <div className="relative mx-auto w-full max-w-md md:max-w-none">
+            <div
+              aria-hidden
+              className="absolute -left-3 -top-3 bottom-3 right-3 rounded-t-full rounded-b-3xl border border-gold md:-left-5 md:-top-5 md:bottom-5 md:right-5"
+            />
+            <Image
+              src={photos.hallFloral.src}
+              alt={photos.hallFloral.alt}
+              placeholder="blur"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="relative aspect-[4/5] w-full rounded-t-full rounded-b-3xl object-cover"
+            />
+            <Image
+              src={photos.dining.src}
+              alt={photos.dining.alt}
+              placeholder="blur"
+              sizes="(min-width: 768px) 25vw, 50vw"
+              className="absolute -bottom-8 -right-4 hidden aspect-[4/3] w-1/2 rounded-2xl border-8 border-cream object-cover shadow-xl sm:block md:-right-10"
+            />
+          </div>
+          <div>
+            <div className="flex items-center gap-4">
+              <p className="eyebrow">The hall</p>
+              <span aria-hidden className="h-px w-16 bg-gold/60" />
+            </div>
+            <h2 className="mt-3 font-display text-4xl font-semibold leading-tight md:text-5xl">
+              A warm space for the moments that matter
+            </h2>
+            <p className="mt-6 max-w-md leading-relaxed text-muted">
+              Exposed brick, a timber-beamed ceiling and a grand ring
+              chandelier, across two floors with lift access. Perfect for
+              birthdays, engagements, anniversaries, baby showers, family
+              gatherings and private celebrations of up to {site.capacity}{" "}
+              guests.
+            </p>
+            <ul className="mt-10 grid gap-x-6 gap-y-5 sm:grid-cols-2">
+              {features.map((f) => (
+                <li key={f.title} className="flex items-center gap-3">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-sand text-brick">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d={f.icon} />
+                    </svg>
+                  </span>
+                  <span className="text-sm font-medium">{f.title}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing */}
       <section id="pricing" className="relative scroll-mt-16 overflow-hidden">
         <Mandala className="absolute -right-40 top-10 size-[28rem] text-gold/15" />
-        <div className="container-x relative pb-16 pt-20 md:pb-20 md:pt-28">
+        <div className="container-x relative pb-24 pt-8 md:pb-32 md:pt-12">
           <SectionTitle>Pricing</SectionTitle>
           <div className="mt-14 grid gap-5 md:grid-cols-3 md:gap-6">
             {pricing.map((tier, i) => {
@@ -195,70 +259,6 @@ export default function Home() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* The hall */}
-      <section className="relative overflow-hidden">
-        <Mandala className="absolute -right-32 top-10 hidden size-[28rem] text-gold/15 md:block" />
-        <div className="container-x relative grid items-center gap-14 py-24 md:grid-cols-2 md:gap-16 md:py-32">
-          <div className="relative mx-auto w-full max-w-md md:max-w-none">
-            <div
-              aria-hidden
-              className="absolute -left-3 -top-3 bottom-3 right-3 rounded-t-full rounded-b-3xl border border-gold md:-left-5 md:-top-5 md:bottom-5 md:right-5"
-            />
-            <Image
-              src={photos.hallFloral.src}
-              alt={photos.hallFloral.alt}
-              placeholder="blur"
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="relative aspect-[4/5] w-full rounded-t-full rounded-b-3xl object-cover"
-            />
-            <Image
-              src={photos.dining.src}
-              alt={photos.dining.alt}
-              placeholder="blur"
-              sizes="(min-width: 768px) 25vw, 50vw"
-              className="absolute -bottom-8 -right-4 hidden aspect-[4/3] w-1/2 rounded-2xl border-8 border-cream object-cover shadow-xl sm:block md:-right-10"
-            />
-          </div>
-          <div>
-            <div className="flex items-center gap-4">
-              <p className="eyebrow">The hall</p>
-              <span aria-hidden className="h-px w-16 bg-gold/60" />
-            </div>
-            <h2 className="mt-3 font-display text-4xl font-semibold leading-tight md:text-5xl">
-              A warm space for the moments that matter
-            </h2>
-            <p className="mt-6 max-w-md leading-relaxed text-muted">
-              Exposed brick, a timber-beamed ceiling and a grand ring
-              chandelier, across two floors with lift access. Perfect for
-              birthdays, engagements, anniversaries, baby showers, family
-              gatherings and private celebrations of up to {site.capacity}{" "}
-              guests.
-            </p>
-            <ul className="mt-10 grid gap-x-6 gap-y-5 sm:grid-cols-2">
-              {features.map((f) => (
-                <li key={f.title} className="flex items-center gap-3">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-sand text-brick">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d={f.icon} />
-                    </svg>
-                  </span>
-                  <span className="text-sm font-medium">{f.title}</span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
