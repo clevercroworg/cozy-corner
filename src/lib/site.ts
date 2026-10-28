@@ -3,15 +3,19 @@ export const site = {
   name: "Cozy Corner",
   tagline: "Event Venue",
   city: "Bangalore",
-  rating: "5.0",
+  area: "Banashankari 6th Stage",
+  rating: "4.7",
+  reviews: 47,
   capacity: 150,
   chairs: 100,
   phone: "+91 80505 07700",
   whatsapp: "918050507700",
-  // TODO: replace email and the full street address with the real details
+  // TODO: replace with the real email
   email: "hello@cozycorner.in",
-  address: "Cozy Corner Event Venue, Bengaluru, Karnataka",
-  mapQuery: "Cozy Corner Event Venue, Bengaluru, Karnataka",
+  address:
+    "1st & 2nd Floor, No. 89, 80 Feet Road, opposite Karishma Hills, Banashankari 6th Stage 1st Block, Subramanyapura, Bengaluru, Karnataka 560061",
+  mapQuery:
+    "Cozy Corner Event Venue - Party Hall, 80 Feet Road, Subramanyapura, Bengaluru 560061",
   mapLink: "https://share.google/AACWdruSl6YNJD3bD",
   hours: "8 AM – 3 PM · 4 PM – 11 PM",
 };

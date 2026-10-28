@@ -25,7 +25,7 @@ const stats: { value: string; label: string; star?: boolean }[] = [
   { value: String(site.capacity), label: "Floating capacity" },
   { value: "2", label: "Floors with lift" },
   { value: String(site.chairs), label: "Cushioned chairs" },
-  { value: site.rating, label: "Google rating", star: true },
+  { value: site.rating, label: `Google · ${site.reviews} reviews`, star: true },
 ];
 
 const features = [
@@ -83,7 +83,9 @@ export default function Home() {
           className="absolute bottom-3 right-3 size-14 text-gold md:bottom-6 md:right-6 md:size-24"
         />
         <div className="container-x pb-24 pt-36 text-cream md:pb-28 md:pt-40">
-          <p className="eyebrow !text-cream/90">{site.city}</p>
+          <p className="eyebrow !text-cream/90">
+            {site.area} · {site.city}
+          </p>
           <h1 className="mt-3 font-display text-5xl font-medium uppercase leading-none tracking-[0.06em] sm:text-6xl md:text-7xl">
             {site.name}
           </h1>
