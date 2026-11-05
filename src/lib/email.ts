@@ -1,4 +1,5 @@
 import "server-only";
+import nodemailer from "nodemailer";
 
 type Row = [label: string, value: string];
 
@@ -11,7 +12,7 @@ const escape = (s: string) =>
       ]!,
   );
 
-/** Sends an email to the hall owner through Resend. */
+/** Sends an email to the hall owner from a Gmail account (via an app password). */
 export async function sendOwnerEmail({
   subject,
   heading,
@@ -23,11 +24,12 @@ export async function sendOwnerEmail({
   rows: Row[];
   replyTo?: string;
 }) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.OWNER_EMAIL;
-  if (!apiKey || !to) {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  const to = process.env.OWNER_EMAIL || user;
+  if (!user || !pass || !to) {
     throw new Error(
-      "Email is not configured. Set RESEND_API_KEY and OWNER_EMAIL.",
+      "Email is not configured. Set GMAIL_USER and GMAIL_APP_PASSWORD.",
     );
   }
 
@@ -51,25 +53,18 @@ export async function sendOwnerEmail({
     .map(([k, v]) => `${k}: ${v}`)
     .join("\n");
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: process.env.EMAIL_FROM ?? "Cozy Corner <onboarding@resend.dev>",
-      to: to.split(",").map((s) => s.trim()),
-      reply_to: replyTo,
-      subject,
-      html,
-      text,
-    }),
+  const transport = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass: pass.replace(/\s/g, "") },
   });
-
-  if (!res.ok) {
-    throw new Error(`Resend error ${res.status}: ${await res.text()}`);
-  }
+  await transport.sendMail({
+    from: `"Cozy Corner Website" <${user}>`,
+    to: to.split(",").map((s) => s.trim()),
+    replyTo,
+    subject,
+    html,
+    text,
+  });
 }
 
 export function clean(value: unknown, max = 500) {

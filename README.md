@@ -18,13 +18,9 @@ npm run dev
 
 ## Email
 
-Booking and contact forms post to `/api/booking` and `/api/contact`, which email the owner through Resend.
+Booking and contact forms post to `/api/booking` and `/api/contact`, which email the owner through Gmail SMTP.
+Set these in Vercel (Project → Settings → Environment Variables), never in the code:
 
-```bash
-vercel link
-vercel integration add resend/resend-email
-vercel env add OWNER_EMAIL
-vercel env pull --yes
-```
-
-Until a sending domain is verified in Resend, the default sender (`onboarding@resend.dev`) can only deliver to the email address on the Resend account.
+- `GMAIL_USER`: the Gmail address that sends the emails
+- `GMAIL_APP_PASSWORD`: a Google app password for that account
+- `OWNER_EMAIL` (optional): who receives the emails; defaults to `GMAIL_USER`
